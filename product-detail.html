@@ -47,7 +47,7 @@
     <a href="cart.html">View Cart 🛒</a>
   </div>
 
-  <!-- Breadcrumb -->
+  <!-- Breadcrumb (Desktop) -->
   <div class="container breadcrumb">
     <div class="breadcrumb-list">
       <a href="index.html">Home</a>
@@ -61,27 +61,31 @@
   <!-- Main Product Detail Section -->
   <main class="container product-detail-section">
     
-    <!-- MOBILE GALLERY CAROUSEL (Visible on screen < 900px) -->
+    <!-- MOBILE GALLERY CAROUSEL & THUMBNAILS (Visible on mobile screen < 960px) -->
     <div class="mobile-gallery">
-      <div class="mobile-gallery-track-wrap">
-        <button class="mobile-gallery-arrow prev" id="mobile-prev" aria-label="Previous Image">
-          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <div class="mobile-gallery-track" id="mobile-gallery-track">
-          <div class="mobile-gallery-slide"><img src="assets/images/shoe1_1.jpg" alt="Sneaker View 1"></div>
-          <div class="mobile-gallery-slide"><img src="assets/images/shoe2_1.jpg" alt="Sneaker View 2"></div>
-          <div class="mobile-gallery-slide"><img src="assets/images/shoe3_1.jpg" alt="Sneaker View 3"></div>
-          <div class="mobile-gallery-slide"><img src="assets/images/shoe4_1.jpg" alt="Sneaker View 4"></div>
+      <div class="mobile-gallery-container">
+        <div class="mobile-gallery-track-wrap">
+          <button class="mobile-gallery-arrow prev" id="mobile-prev" aria-label="Previous Image">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="mobile-gallery-track" id="mobile-gallery-track">
+            <div class="mobile-gallery-slide"><img src="assets/images/shoe1_1.jpg" alt="Sneaker View 1"></div>
+            <div class="mobile-gallery-slide"><img src="assets/images/shoe2_1.jpg" alt="Sneaker View 2"></div>
+            <div class="mobile-gallery-slide"><img src="assets/images/shoe3_1.jpg" alt="Sneaker View 3"></div>
+            <div class="mobile-gallery-slide"><img src="assets/images/shoe4_1.jpg" alt="Sneaker View 4"></div>
+          </div>
+          <button class="mobile-gallery-arrow next" id="mobile-next" aria-label="Next Image">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
         </div>
-        <button class="mobile-gallery-arrow next" id="mobile-next" aria-label="Next Image">
-          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-      <div class="mobile-gallery-dots">
-        <button class="mobile-dot active" aria-label="Slide 1"></button>
-        <button class="mobile-dot" aria-label="Slide 2"></button>
-        <button class="mobile-dot" aria-label="Slide 3"></button>
-        <button class="mobile-dot" aria-label="Slide 4"></button>
+        
+        <!-- Mobile Thumbnails Strip -->
+        <div class="mobile-thumbs-strip" id="mobile-thumbs-strip">
+          <button class="mobile-thumb-item active" data-index="0"><img src="assets/images/shoe1_1.jpg" alt="Thumb 1"></button>
+          <button class="mobile-thumb-item" data-index="1"><img src="assets/images/shoe2_1.jpg" alt="Thumb 2"></button>
+          <button class="mobile-thumb-item" data-index="2"><img src="assets/images/shoe3_1.jpg" alt="Thumb 3"></button>
+          <button class="mobile-thumb-item" data-index="3"><img src="assets/images/shoe4_1.jpg" alt="Thumb 4"></button>
+        </div>
       </div>
     </div>
 
@@ -91,7 +95,7 @@
       <div class="gallery-col">
         <div class="gallery-main" id="main-image-wrap">
           <img src="assets/images/shoe1_1.jpg" id="main-image" alt="Fall Limited Edition Sneakers">
-          <div class="gallery-zoom-hint">🔍 Click to enlarge</div>
+          <div class="gallery-zoom-hint">🔍 Click for Lightbox View</div>
         </div>
         
         <div class="gallery-thumbs" id="desktop-thumbs">
@@ -115,26 +119,16 @@
         <div class="info-brand" id="p-brand">SNEAKER COMPANY</div>
         <h1 class="info-title" id="p-title">Fall Limited Edition Sneakers</h1>
 
-        <div class="info-rating">
-          <div class="info-stars">
-            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-          </div>
-          <span class="info-rating-count">4.8 (128 reviews)</span>
-          <span class="info-rating-link">Read reviews</span>
-        </div>
-
         <p class="info-desc" id="p-desc">
           These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.
         </p>
 
-        <!-- Price block exactly matching reference layout -->
+        <!-- Price block matching reference layout -->
         <div class="info-price-row">
           <span class="info-price" id="p-price">$125.00</span>
           <span class="badge-discount" id="p-badge">50%</span>
         </div>
-        <div style="margin-bottom: 24px;">
-          <span class="info-price-old" id="p-old-price">$250.00</span>
-        </div>
+        <span class="info-price-old" id="p-old-price">$250.00</span>
 
         <!-- Size selection -->
         <div class="info-section-label">SELECT SIZE</div>
@@ -192,7 +186,9 @@
   <!-- LIGHTBOX MODAL OVERLAY (Matches Image 2 reference) -->
   <div class="lightbox-overlay" id="lightbox" role="dialog" aria-label="Image gallery lightbox">
     <div class="lightbox-box">
-      <button class="lightbox-close" id="lb-close" aria-label="Close Lightbox">✕</button>
+      <div class="lightbox-close-row">
+        <button class="lightbox-close" id="lb-close" aria-label="Close Lightbox">✕</button>
+      </div>
       
       <div class="lightbox-img-wrap">
         <button class="lightbox-arrow prev" id="lb-prev" aria-label="Previous image">
@@ -217,7 +213,7 @@
   <section class="container related-section">
     <div class="section-header">
       <h2 class="section-title">You Might Also Like</h2>
-      <a href="products.html" class="section-link">View Gallery →</a>
+      <a href="products.html" class="section-link">View Full Gallery →</a>
     </div>
 
     <div class="products-grid" id="products-grid">

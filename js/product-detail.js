@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const productId = parseInt(params.get("id")) || 1;
   const product = PRODUCTS.find(p => p.id === productId) || PRODUCTS[0];
 
-  // Gallery Images setup for product detail (using primary image and variations/fallbacks)
+  // Gallery Images setup for product detail
   const galleryImages = [
     product.img || "assets/images/shoe1_1.jpg",
     "assets/images/shoe2_1.jpg",
@@ -92,9 +92,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Desktop Gallery Elements
+  // Gallery Elements
   const mainImage = document.getElementById("main-image");
   const desktopThumbs = document.querySelectorAll("#desktop-thumbs .thumb-btn");
+  const mobileThumbs = document.querySelectorAll("#mobile-thumbs-strip .mobile-thumb-item");
 
   function updateGallery(index) {
     currentIndex = index;
@@ -102,6 +103,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update Desktop Thumbs
     desktopThumbs.forEach((thumb, idx) => {
+      thumb.classList.toggle("active", idx === currentIndex);
+    });
+
+    // Update Mobile Thumbs
+    mobileThumbs.forEach((thumb, idx) => {
       thumb.classList.toggle("active", idx === currentIndex);
     });
 
@@ -113,17 +119,18 @@ document.addEventListener("DOMContentLoaded", () => {
       thumb.classList.toggle("active", idx === currentIndex);
     });
 
-    // Update Mobile Carousel
+    // Update Mobile Carousel Track
     const mobileTrack = document.getElementById("mobile-gallery-track");
     if (mobileTrack) {
       mobileTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
-    document.querySelectorAll(".mobile-dot").forEach((dot, idx) => {
-      dot.classList.toggle("active", idx === currentIndex);
-    });
   }
 
   desktopThumbs.forEach((thumb, idx) => {
+    thumb.addEventListener("click", () => updateGallery(idx));
+  });
+
+  mobileThumbs.forEach((thumb, idx) => {
     thumb.addEventListener("click", () => updateGallery(idx));
   });
 
@@ -183,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "ArrowRight") lbNext.click();
   });
 
-  // Mobile Gallery Carousel
+  // Mobile Gallery Navigation
   const mobilePrev = document.getElementById("mobile-prev");
   const mobileNext = document.getElementById("mobile-next");
 
@@ -200,10 +207,6 @@ document.addEventListener("DOMContentLoaded", () => {
       updateGallery(nextIdx);
     });
   }
-
-  document.querySelectorAll(".mobile-dot").forEach((dot, idx) => {
-    dot.addEventListener("click", () => updateGallery(idx));
-  });
 
   // Quantity Control
   const qtyMinus = document.getElementById("qty-minus");
