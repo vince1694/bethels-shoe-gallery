@@ -123,35 +123,6 @@
 .card-wishlist svg { width: 16px; height: 16px; stroke: var(--clr-muted); fill: none; stroke-width: 2; }
 .card-wishlist.active svg { stroke: #E53E3E; fill: #E53E3E; }
 
-/* REDUCED SLEEK FLOATING QUICK ADD BUTTON (Fixed oversized black box) */
-.card-quick-add {
-  position: absolute;
-  bottom: 12px; left: 50%;
-  transform: translate(-50%, 15px);
-  background: rgba(17, 17, 17, 0.88);
-  color: #fff;
-  padding: 7px 16px;
-  border-radius: 100px;
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: .5px;
-  opacity: 0;
-  transition: all var(--transition);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-  white-space: nowrap;
-  backdrop-filter: blur(4px);
-  border: none;
-  cursor: pointer;
-}
-.product-card:hover .card-quick-add {
-  opacity: 1;
-  transform: translate(-50%, 0);
-}
-.card-quick-add:hover {
-  background: var(--clr-orange);
-  box-shadow: 0 6px 18px rgba(217,123,42,0.45);
-}
-
 .card-body { padding: 16px; }
 .card-category { font-size: .72rem; font-weight: 600; color: var(--clr-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
 .card-name { font-size: 1rem; font-weight: 700; color: var(--clr-dark); margin-bottom: 8px; line-height: 1.3; }
