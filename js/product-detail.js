@@ -197,9 +197,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "ArrowRight") lbNext.click();
   });
 
-  // Mobile Gallery Navigation
+  // Mobile Gallery Navigation & Swipe Gestures
   const mobilePrev = document.getElementById("mobile-prev");
   const mobileNext = document.getElementById("mobile-next");
+  const mobileTrackWrap = document.querySelector(".mobile-gallery-track-wrap");
 
   if (mobilePrev) {
     mobilePrev.addEventListener("click", () => {
@@ -213,6 +214,32 @@ document.addEventListener("DOMContentLoaded", () => {
       const nextIdx = (currentIndex + 1) % galleryImages.length;
       updateGallery(nextIdx);
     });
+  }
+
+  // Touch Swipe Gesture Handling
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  if (mobileTrackWrap) {
+    mobileTrackWrap.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    mobileTrackWrap.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchEndX - touchStartX;
+      if (Math.abs(diff) > 35) {
+        if (diff < 0) {
+          // Swipe Left -> Next Image
+          const nextIdx = (currentIndex + 1) % galleryImages.length;
+          updateGallery(nextIdx);
+        } else {
+          // Swipe Right -> Previous Image
+          const prevIdx = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+          updateGallery(prevIdx);
+        }
+      }
+    }, { passive: true });
   }
 
   // Quantity Control
