@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fall Limited Edition Sneakers — Bethels Shoe Gallery</title>
+  <meta name="description" content="These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/products.css">
+  <link rel="stylesheet" href="css/product-detail.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">sneakers<span>.</span></a>
+      
+      <nav class="nav-links">
+        <a href="products.html">Collections</a>
+        <a href="products.html?cat=Men">Men</a>
+        <a href="products.html?cat=Women">Women</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="cart.html" class="nav-icon-btn" aria-label="Shopping Cart">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge">0</span>
+        </a>
+        <div class="nav-avatar-placeholder" title="User Profile">B</div>
+        <button class="nav-hamburger" id="hamburger-btn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="nav-mobile-drawer" id="mobile-drawer">
+    <a href="products.html">Collections</a>
+    <a href="products.html?cat=Men">Men</a>
+    <a href="products.html?cat=Women">Women</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="cart.html">View Cart 🛒</a>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="container breadcrumb">
+    <div class="breadcrumb-list">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="products.html">Collections</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current" id="bc-current">Fall Limited Edition Sneakers</span>
+    </div>
+  </div>
+
+  <!-- Main Product Detail Section -->
+  <main class="container product-detail-section">
+    
+    <!-- MOBILE GALLERY CAROUSEL (Visible on screen < 900px) -->
+    <div class="mobile-gallery">
+      <div class="mobile-gallery-track-wrap">
+        <button class="mobile-gallery-arrow prev" id="mobile-prev" aria-label="Previous Image">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="mobile-gallery-track" id="mobile-gallery-track">
+          <div class="mobile-gallery-slide"><img src="assets/images/shoe1_1.jpg" alt="Sneaker View 1"></div>
+          <div class="mobile-gallery-slide"><img src="assets/images/shoe2_1.jpg" alt="Sneaker View 2"></div>
+          <div class="mobile-gallery-slide"><img src="assets/images/shoe3_1.jpg" alt="Sneaker View 3"></div>
+          <div class="mobile-gallery-slide"><img src="assets/images/shoe4_1.jpg" alt="Sneaker View 4"></div>
+        </div>
+        <button class="mobile-gallery-arrow next" id="mobile-next" aria-label="Next Image">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      <div class="mobile-gallery-dots">
+        <button class="mobile-dot active" aria-label="Slide 1"></button>
+        <button class="mobile-dot" aria-label="Slide 2"></button>
+        <button class="mobile-dot" aria-label="Slide 3"></button>
+        <button class="mobile-dot" aria-label="Slide 4"></button>
+      </div>
+    </div>
+
+    <div class="product-detail-grid">
+      
+      <!-- DESKTOP GALLERY (Left Column) -->
+      <div class="gallery-col">
+        <div class="gallery-main" id="main-image-wrap">
+          <img src="assets/images/shoe1_1.jpg" id="main-image" alt="Fall Limited Edition Sneakers">
+          <div class="gallery-zoom-hint">🔍 Click to enlarge</div>
+        </div>
+        
+        <div class="gallery-thumbs" id="desktop-thumbs">
+          <button class="thumb-btn active" data-index="0">
+            <img src="assets/images/shoe1_1.jpg" alt="Thumbnail 1">
+          </button>
+          <button class="thumb-btn" data-index="1">
+            <img src="assets/images/shoe2_1.jpg" alt="Thumbnail 2">
+          </button>
+          <button class="thumb-btn" data-index="2">
+            <img src="assets/images/shoe3_1.jpg" alt="Thumbnail 3">
+          </button>
+          <button class="thumb-btn" data-index="3">
+            <img src="assets/images/shoe4_1.jpg" alt="Thumbnail 4">
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUCT INFO PANEL (Right Column) -->
+      <div class="info-col">
+        <div class="info-brand" id="p-brand">SNEAKER COMPANY</div>
+        <h1 class="info-title" id="p-title">Fall Limited Edition Sneakers</h1>
+
+        <div class="info-rating">
+          <div class="info-stars">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <span class="info-rating-count">4.8 (128 reviews)</span>
+          <span class="info-rating-link">Read reviews</span>
+        </div>
+
+        <p class="info-desc" id="p-desc">
+          These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.
+        </p>
+
+        <!-- Price block exactly matching reference layout -->
+        <div class="info-price-row">
+          <span class="info-price" id="p-price">$125.00</span>
+          <span class="badge-discount" id="p-badge">50%</span>
+        </div>
+        <div style="margin-bottom: 24px;">
+          <span class="info-price-old" id="p-old-price">$250.00</span>
+        </div>
+
+        <!-- Size selection -->
+        <div class="info-section-label">SELECT SIZE</div>
+        <div class="info-sizes" id="sizes-container">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Color selection -->
+        <div class="info-section-label">COLOR VARIATION</div>
+        <div class="info-colors" id="colors-container">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Quantity + Add to Cart row -->
+        <div class="info-add-row">
+          <div class="qty-control">
+            <button class="qty-btn" id="qty-minus" aria-label="Decrease quantity">−</button>
+            <input type="text" class="qty-display" id="qty-input" value="1" readonly>
+            <button class="qty-btn" id="qty-plus" aria-label="Increase quantity">+</button>
+          </div>
+
+          <button class="btn-add-to-cart" id="btn-add-to-cart">
+            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Add to cart
+          </button>
+
+          <button class="btn-wishlist-detail" onclick="this.classList.toggle('active')" aria-label="Add to wishlist">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
+
+        <hr class="info-divider">
+
+        <!-- Trust Features -->
+        <div class="info-trust">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <span>Free Express Shipping</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>2-Year Quality Warranty</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            <span>30 Days Free Return</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- LIGHTBOX MODAL OVERLAY (Matches Image 2 reference) -->
+  <div class="lightbox-overlay" id="lightbox" role="dialog" aria-label="Image gallery lightbox">
+    <div class="lightbox-box">
+      <button class="lightbox-close" id="lb-close" aria-label="Close Lightbox">✕</button>
+      
+      <div class="lightbox-img-wrap">
+        <button class="lightbox-arrow prev" id="lb-prev" aria-label="Previous image">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <img src="assets/images/shoe1_1.jpg" id="lb-main-image" alt="Lightbox Main Image">
+        <button class="lightbox-arrow next" id="lb-next" aria-label="Next image">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <div class="lightbox-thumbs">
+        <button class="lb-thumb active" data-index="0"><img src="assets/images/shoe1_1.jpg" alt="LB Thumb 1"></button>
+        <button class="lb-thumb" data-index="1"><img src="assets/images/shoe2_1.jpg" alt="LB Thumb 2"></button>
+        <button class="lb-thumb" data-index="2"><img src="assets/images/shoe3_1.jpg" alt="LB Thumb 3"></button>
+        <button class="lb-thumb" data-index="3"><img src="assets/images/shoe4_1.jpg" alt="LB Thumb 4"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Products Section -->
+  <section class="container related-section">
+    <div class="section-header">
+      <h2 class="section-title">You Might Also Like</h2>
+      <a href="products.html" class="section-link">View Gallery →</a>
+    </div>
+
+    <div class="products-grid" id="products-grid">
+      <!-- Cards rendered by products.js -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">bethels<span>.</span> shoe gallery</div>
+          <p class="footer-tagline">Your destination for statement footwear, premium sneakers, and luxury leather craft.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Shop</div>
+          <ul>
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="product-detail.html?id=1">Fall Edition Sneakers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Customer Support</div>
+          <ul>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">30-Day Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Contact</div>
+          <ul>
+            <li><a href="mailto:support@bethelsshoegallery.com">support@bethelsshoegallery.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Bethels Shoe Gallery. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/cart.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/product-detail.js"></script>
+  <script>
+    document.getElementById('hamburger-btn').addEventListener('click', () => {
+      document.getElementById('mobile-drawer').classList.toggle('open');
+    });
+  </script>
+</body>
+</html>

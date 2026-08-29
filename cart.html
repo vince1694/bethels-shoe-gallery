@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart — Bethels Shoe Gallery</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .cart-page-section { padding: 48px 0 80px; min-height: 60vh; }
+    .cart-title { font-size: 2rem; font-weight: 800; margin-bottom: 24px; color: var(--clr-dark); }
+    .cart-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; align-items: start; }
+    
+    .cart-items-list { display: flex; flex-direction: column; gap: 16px; }
+    .cart-item {
+      display: grid;
+      grid-template-columns: 90px 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 16px;
+      background: #fff;
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-md);
+    }
+    .cart-item-img { width: 90px; height: 90px; border-radius: var(--radius-sm); overflow: hidden; background: var(--clr-bg-soft); }
+    .cart-item-info { display: flex; flex-direction: column; gap: 4px; }
+    .cart-item-title { font-size: 1rem; font-weight: 700; color: var(--clr-dark); }
+    .cart-item-meta { font-size: 0.82rem; color: var(--clr-muted); }
+    .cart-item-price { font-size: 1.1rem; font-weight: 800; color: var(--clr-dark); }
+    .cart-item-actions { display: flex; align-items: center; gap: 16px; margin-top: 8px; }
+    .cart-remove-btn { color: #E53E3E; font-size: 0.82rem; font-weight: 600; cursor: pointer; text-decoration: underline; background: none; border: none; }
+
+    /* Summary card */
+    .cart-summary {
+      background: var(--clr-bg-soft);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      position: sticky;
+      top: calc(var(--nav-height) + 24px);
+    }
+    .summary-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 20px; color: var(--clr-dark); }
+    .summary-row { display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 12px; color: var(--clr-muted); }
+    .summary-total { display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: 800; border-top: 1px solid var(--clr-border); padding-top: 16px; margin-top: 16px; color: var(--clr-dark); }
+    .btn-checkout { width: 100%; height: 52px; margin-top: 24px; font-size: 1rem; justify-content: center; }
+
+    .cart-empty {
+      text-align: center;
+      padding: 80px 20px;
+      background: var(--clr-bg-soft);
+      border-radius: var(--radius-lg);
+      border: 2px dashed var(--clr-border);
+    }
+    .cart-empty-icon { font-size: 3.5rem; margin-bottom: 16px; }
+    .cart-empty h2 { font-size: 1.5rem; font-weight: 800; color: var(--clr-dark); margin-bottom: 8px; }
+    .cart-empty p { color: var(--clr-muted); margin-bottom: 24px; }
+
+    @media (max-width: 800px) {
+      .cart-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">bethels<span>.</span></a>
+      
+      <nav class="nav-links">
+        <a href="index.html">Collections</a>
+        <a href="products.html?cat=Men">Men</a>
+        <a href="products.html?cat=Women">Women</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="cart.html" class="nav-icon-btn" aria-label="Shopping Cart">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge">0</span>
+        </a>
+        <div class="nav-avatar-placeholder" title="User Profile">B</div>
+        <button class="nav-hamburger" id="hamburger-btn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="nav-mobile-drawer" id="mobile-drawer">
+    <a href="index.html">Collections</a>
+    <a href="products.html?cat=Men">Men</a>
+    <a href="products.html?cat=Women">Women</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="cart.html">View Cart 🛒</a>
+  </div>
+
+  <main class="container cart-page-section">
+    <h1 class="cart-title">Your Shopping Cart</h1>
+
+    <div id="cart-content">
+      <!-- Dynamic render -->
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 Bethels Shoe Gallery. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/cart.js"></script>
+  <script>
+    document.getElementById('hamburger-btn').addEventListener('click', () => {
+      document.getElementById('mobile-drawer').classList.toggle('open');
+    });
+
+    function renderCartPage() {
+      const items = Cart.getItems();
+      const content = document.getElementById("cart-content");
+
+      if (items.length === 0) {
+        content.innerHTML = `
+          <div class="cart-empty">
+            <div class="cart-empty-icon">🛒</div>
+            <h2>Your Cart is Empty</h2>
+            <p>Looks like you haven't added any shoes to your gallery cart yet.</p>
+            <a href="products.html" class="btn-primary">Browse Shoe Collection</a>
+          </div>
+        `;
+        return;
+      }
+
+      const subtotal = Cart.getTotal();
+      const shipping = subtotal > 150 ? 0 : 15;
+
+      content.innerHTML = `
+        <div class="cart-layout">
+          <div class="cart-items-list">
+            ${items.map(item => `
+              <div class="cart-item">
+                <div class="cart-item-img">
+                  <img src="${item.img || 'assets/images/shoe1_1.jpg'}" alt="${item.name}">
+                </div>
+                <div class="cart-item-info">
+                  <div class="cart-item-title">${item.name}</div>
+                  <div class="cart-item-meta">Size: ${item.size} | Color: <span style="display:inline-block; width:12px; height:12px; border-radius:50%; background-color:${item.color}; vertical-align:middle;"></span></div>
+                  <div class="cart-item-actions">
+                    <span style="font-size:0.85rem; font-weight:600;">Qty: ${item.qty}</span>
+                    <button class="cart-remove-btn" onclick="removeItem('${item.id}', '${item.size}', '${item.color}')">Remove</button>
+                  </div>
+                </div>
+                <div class="cart-item-price">$${(item.price * item.qty).toFixed(2)}</div>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="cart-summary">
+            <div class="summary-title">Order Summary</div>
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span>$${subtotal.toFixed(2)}</span>
+            </div>
+            <div class="summary-row">
+              <span>Shipping</span>
+              <span>${shipping === 0 ? '<strong style="color:#16A34A">FREE</strong>' : '$' + shipping.toFixed(2)}</span>
+            </div>
+            <div class="summary-total">
+              <span>Total</span>
+              <span>$${(subtotal + shipping).toFixed(2)}</span>
+            </div>
+            <button class="btn-primary btn-checkout" onclick="checkout()">Proceed to Checkout 🔒</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function removeItem(id, size, color) {
+      Cart.removeItem(parseInt(id) || id, size, color);
+      renderCartPage();
+    }
+
+    function checkout() {
+      Cart.showToast("🎉 Thank you! Checkout order placed successfully.");
+      Cart.clear();
+      setTimeout(renderCartPage, 1500);
+    }
+
+    document.addEventListener("DOMContentLoaded", renderCartPage);
+  </script>
+</body>
+</html>

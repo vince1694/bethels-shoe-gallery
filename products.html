@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop All Shoes — Bethels Shoe Gallery</title>
+  <meta name="description" content="Explore our complete gallery of high-end footwear including sneakers, stilettos, formal dress shoes, and boots.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/products.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">bethels<span>.</span></a>
+      
+      <nav class="nav-links">
+        <a href="index.html">Collections</a>
+        <a href="products.html?cat=Men" class="active">Men</a>
+        <a href="products.html?cat=Women">Women</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="cart.html" class="nav-icon-btn" aria-label="Shopping Cart">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge">0</span>
+        </a>
+        <div class="nav-avatar-placeholder" title="User Profile">B</div>
+        <button class="nav-hamburger" id="hamburger-btn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="nav-mobile-drawer" id="mobile-drawer">
+    <a href="index.html">Collections</a>
+    <a href="products.html?cat=Men">Men</a>
+    <a href="products.html?cat=Women">Women</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="cart.html">View Cart 🛒</a>
+  </div>
+
+  <!-- Hero Header -->
+  <div class="products-hero">
+    <div class="container">
+      <div class="products-hero-inner">
+        <div>
+          <h1>Shoe Gallery <em>Catalog</em></h1>
+          <p>Find your ideal pair from our 2026 autumn & winter footwear releases. Filter by gender or category below.</p>
+        </div>
+        <div class="products-hero-stat">
+          <div class="stat-item">
+            <div class="stat-num">8</div>
+            <div class="stat-label">CURATED MODELS</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">Free</div>
+            <div class="stat-label">RETURNS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <div class="container filter-bar-inner">
+      <button class="filter-btn active" data-filter="All">All Shoes</button>
+      <button class="filter-btn" data-filter="Men">Men</button>
+      <button class="filter-btn" data-filter="Women">Women</button>
+
+      <div class="filter-spacer"></div>
+
+      <span class="results-count" id="results-count">8 products</span>
+      <select class="sort-select" id="sort-select">
+        <option value="featured">Sort by: Featured</option>
+        <option value="price-low">Price: Low to High</option>
+        <option value="price-high">Price: High to Low</option>
+        <option value="rating">Highest Rated</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Product Listing Grid -->
+  <main class="container products-section">
+    <div class="products-grid" id="products-grid">
+      <!-- Cards rendered by products.js -->
+    </div>
+
+    <div class="load-more-wrap">
+      <button class="btn-secondary" onclick="Cart.showToast('All 8 products are currently displayed!')">Showing All Products</button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">bethels<span>.</span> shoe gallery</div>
+          <p class="footer-tagline">Your destination for statement footwear, premium sneakers, and luxury leather craft.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Shop</div>
+          <ul>
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="product-detail.html?id=1">Fall Edition Sneakers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Help</div>
+          <ul>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">30-Day Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Contact</div>
+          <ul>
+            <li><a href="mailto:support@bethelsshoegallery.com">support@bethelsshoegallery.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Bethels Shoe Gallery. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/cart.js"></script>
+  <script src="js/products.js"></script>
+  <script>
+    document.getElementById('hamburger-btn').addEventListener('click', () => {
+      document.getElementById('mobile-drawer').classList.toggle('open');
+    });
+
+    // Check query params for default category filter
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const cat = urlParams.get('cat');
+      if (cat) {
+        const btn = document.querySelector(`.filter-btn[data-filter="${cat}"]`);
+        if (btn) btn.click();
+      }
+    });
+  </script>
+</body>
+</html>
