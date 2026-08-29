@@ -3,14 +3,169 @@
    ============================================================ */
 
 const PRODUCTS = [
-  { id: 1, name: "Classic Low-Top Sneakers", brand: "Bethels Gallery", category: "Men", price: 125, oldPrice: 250, discount: 50, rating: 4.8, reviews: 128, img: "assets/images/shoe1_1.jpg", colors: ["#F5F0E8","#D97B2A","#1A1A1A"], sizes: [40,41,42,43,44,45], badge: "50% OFF", bestseller: true },
-  { id: 2, name: "Oxford Cap-Toe Dress Shoes", brand: "Bethels Gallery", category: "Men", price: 189, oldPrice: 220, discount: 14, rating: 4.9, reviews: 84, img: "assets/images/shoe2_1.jpg", colors: ["#1A1A1A","#4A3728","#6B5B47"], sizes: [40,41,42,43,44,45], badge: "NEW", bestseller: false },
-  { id: 3, name: "Nude Suede Stiletto Heels", brand: "Bethels Gallery", category: "Women", price: 149, oldPrice: 199, discount: 25, rating: 4.7, reviews: 203, img: "assets/images/shoe3_1.jpg", colors: ["#C8A882","#E8D5C4","#8B6F5A"], sizes: [36,37,38,39,40,41], badge: "25% OFF", bestseller: true },
-  { id: 4, name: "Rugged Leather Hiking Boots", brand: "Bethels Gallery", category: "Men", price: 215, oldPrice: 280, discount: 23, rating: 4.6, reviews: 67, img: "assets/images/shoe4_1.jpg", colors: ["#5C3A1E","#8B6F5A","#3D2B1F"], sizes: [40,41,42,43,44,45,46], badge: null, bestseller: false },
-  { id: 5, name: "Chunky Platform Streetwear", brand: "Bethels Gallery", category: "Women", price: 135, oldPrice: 180, discount: 25, rating: 4.5, reviews: 312, img: "assets/images/shoe5_1.jpg", colors: ["#FFFFFF","#3B82F6","#F97316"], sizes: [36,37,38,39,40,41], badge: "HOT", bestseller: true },
-  { id: 6, name: "Red Strappy Block Sandals", brand: "Bethels Gallery", category: "Women", price: 98, oldPrice: 130, discount: 25, rating: 4.4, reviews: 156, img: "assets/images/shoe6_1.jpg", colors: ["#DC2626","#000000","#C8A882"], sizes: [36,37,38,39,40,41], badge: "25% OFF", bestseller: false },
-  { id: 7, name: "Tan Suede Chelsea Boots", brand: "Bethels Gallery", category: "Men", price: 178, oldPrice: 230, discount: 23, rating: 4.8, reviews: 91, img: null, gradClass: "placeholder-grad-7", gradIcon: "🥾", colors: ["#C8A882","#1A1A1A","#5C3A1E"], sizes: [40,41,42,43,44,45], badge: null, bestseller: false },
-  { id: 8, name: "Sport Runner Pro", brand: "Bethels Gallery", category: "Men", price: 115, oldPrice: 155, discount: 26, rating: 4.6, reviews: 445, img: null, gradClass: "placeholder-grad-8", gradIcon: "👟", colors: ["#FFFFFF","#F97316","#3B82F6"], sizes: [40,41,42,43,44,45,46], badge: "SALE", bestseller: true }
+  {
+    id: 1,
+    name: "Classic Low-Top Sneakers",
+    brand: "Sneaker Company",
+    category: "Men",
+    price: 125,
+    oldPrice: 250,
+    discount: 50,
+    rating: 4.8,
+    reviews: 128,
+    img: "assets/images/shoe1_1.jpg",
+    galleryImages: [
+      "assets/images/shoe1_1.jpg",
+      "assets/images/shoe1_2.jpg",
+      "assets/images/shoe1_3.jpg",
+      "assets/images/shoe1_4.jpg"
+    ],
+    colors: ["#F5F0E8", "#D97B2A", "#1A1A1A"],
+    sizes: [40, 41, 42, 43, 44, 45],
+    badge: "50% OFF",
+    bestseller: true,
+    desc: "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer."
+  },
+  {
+    id: 2,
+    name: "Oxford Cap-Toe Dress Shoes",
+    brand: "Bethels Leather Craft",
+    category: "Men",
+    price: 189,
+    oldPrice: 220,
+    discount: 14,
+    rating: 4.9,
+    reviews: 84,
+    img: "assets/images/shoe2_1.jpg",
+    galleryImages: [
+      "assets/images/shoe2_1.jpg"
+    ],
+    colors: ["#1A1A1A", "#4A3728", "#6B5B47"],
+    sizes: [40, 41, 42, 43, 44, 45],
+    badge: "NEW",
+    bestseller: false,
+    desc: "Handcrafted from full-grain calfskin leather, these Oxford cap-toe dress shoes offer timeless elegance for formal business and black-tie events."
+  },
+  {
+    id: 3,
+    name: "Nude Suede Stiletto Heels",
+    brand: "Bethels Couture",
+    category: "Women",
+    price: 149,
+    oldPrice: 199,
+    discount: 25,
+    rating: 4.7,
+    reviews: 203,
+    img: "assets/images/shoe3_1.jpg",
+    galleryImages: [
+      "assets/images/shoe3_1.jpg"
+    ],
+    colors: ["#C8A882", "#E8D5C4", "#8B6F5A"],
+    sizes: [36, 37, 38, 39, 40, 41],
+    badge: "25% OFF",
+    bestseller: true,
+    desc: "Sleek and sophisticated nude suede stilettos with ankle strap detailing. Designed with padded insoles for elegant evening comfort."
+  },
+  {
+    id: 4,
+    name: "Rugged Leather Hiking Boots",
+    brand: "Outdoor Craft",
+    category: "Men",
+    price: 215,
+    oldPrice: 280,
+    discount: 23,
+    rating: 4.6,
+    reviews: 67,
+    img: "assets/images/shoe4_1.jpg",
+    galleryImages: [
+      "assets/images/shoe4_1.jpg"
+    ],
+    colors: ["#5C3A1E", "#8B6F5A", "#3D2B1F"],
+    sizes: [40, 41, 42, 43, 44, 45, 46],
+    badge: null,
+    bestseller: false,
+    desc: "Heavy-duty waterproof leather boots engineered with Vibram soles for outdoor trails, wilderness trekking, and winter weather."
+  },
+  {
+    id: 5,
+    name: "Chunky Platform Streetwear",
+    brand: "Urban Runner",
+    category: "Women",
+    price: 135,
+    oldPrice: 180,
+    discount: 25,
+    rating: 4.5,
+    reviews: 312,
+    img: "assets/images/shoe5_1.jpg",
+    galleryImages: [
+      "assets/images/shoe5_1.jpg"
+    ],
+    colors: ["#FFFFFF", "#3B82F6", "#F97316"],
+    sizes: [36, 37, 38, 39, 40, 41],
+    badge: "HOT",
+    bestseller: true,
+    desc: "Bold 90s retro-inspired chunky platform sneakers with vivid blue and orange pops. Lightweight foam sole for all-day urban comfort."
+  },
+  {
+    id: 6,
+    name: "Red Strappy Block Sandals",
+    brand: "Summer Atelier",
+    category: "Women",
+    price: 98,
+    oldPrice: 130,
+    discount: 25,
+    rating: 4.4,
+    reviews: 156,
+    img: "assets/images/shoe6_1.jpg",
+    galleryImages: [
+      "assets/images/shoe6_1.jpg"
+    ],
+    colors: ["#DC2626", "#000000", "#C8A882"],
+    sizes: [36, 37, 38, 39, 40, 41],
+    badge: "25% OFF",
+    bestseller: false,
+    desc: "Vibrant red leather strappy sandals with gold buckle hardware and sturdy block heels. Perfect for summer parties and vacations."
+  },
+  {
+    id: 7,
+    name: "Tan Suede Chelsea Boots",
+    brand: "Bethels Gallery",
+    category: "Men",
+    price: 178,
+    oldPrice: 230,
+    discount: 23,
+    rating: 4.8,
+    reviews: 91,
+    img: "assets/images/shoe1_2.jpg",
+    galleryImages: [
+      "assets/images/shoe1_2.jpg"
+    ],
+    colors: ["#C8A882", "#1A1A1A", "#5C3A1E"],
+    sizes: [40, 41, 42, 43, 44, 45],
+    badge: null,
+    bestseller: false,
+    desc: "Italian suede Chelsea boots featuring elastic side gores and tab pullers for versatile smart casual styling."
+  },
+  {
+    id: 8,
+    name: "Sport Runner Pro",
+    brand: "Bethels Gallery",
+    category: "Men",
+    price: 115,
+    oldPrice: 155,
+    discount: 26,
+    rating: 4.6,
+    reviews: 445,
+    img: "assets/images/shoe1_1.jpg",
+    galleryImages: [
+      "assets/images/shoe1_1.jpg"
+    ],
+    colors: ["#FFFFFF", "#F97316", "#3B82F6"],
+    sizes: [40, 41, 42, 43, 44, 45, 46],
+    badge: "SALE",
+    bestseller: true,
+    desc: "Breathable performance running shoes built with shock-absorbing soles for long-distance training."
+  }
 ];
 
 function getStars(rating) {
@@ -24,9 +179,7 @@ function getStars(rating) {
 }
 
 function renderCard(p) {
-  const imgHtml = p.img
-    ? `<img src="${p.img}" alt="${p.name}" loading="lazy">`
-    : `<div class="card-img-placeholder ${p.gradClass}"><span style="font-size:4rem">${p.gradIcon}</span></div>`;
+  const imgHtml = `<img src="${p.img}" alt="${p.name}" loading="lazy">`;
 
   return `
   <article class="product-card" data-category="${p.category}" data-id="${p.id}" onclick="goToDetail(${p.id})">
@@ -66,7 +219,7 @@ function toggleWishlist(e, btn) {
 function quickAdd(e, id) {
   e.stopPropagation();
   const p = PRODUCTS.find(x => x.id === id);
-  if (p) Cart.addItem({ id: p.id, name: p.name, price: p.price, img: p.img, size: "Default", color: p.colors[0] });
+  if (p) Cart.addItem({ id: p.id, name: p.name, price: p.price, img: p.img, size: p.sizes ? p.sizes[0] : "Default", color: p.colors ? p.colors[0] : "#000" });
 }
 
 // Render grid
