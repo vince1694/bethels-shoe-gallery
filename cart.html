@@ -119,6 +119,10 @@
       document.getElementById('mobile-drawer').classList.toggle('open');
     });
 
+    function formatNaira(amount) {
+      return "₦" + Number(amount).toLocaleString("en-NG");
+    }
+
     function renderCartPage() {
       const items = Cart.getItems();
       const content = document.getElementById("cart-content");
@@ -136,7 +140,7 @@
       }
 
       const subtotal = Cart.getTotal();
-      const shipping = subtotal > 150 ? 0 : 15;
+      const shipping = subtotal >= 150000 ? 0 : 5000;
 
       content.innerHTML = `
         <div class="cart-layout">
@@ -154,7 +158,7 @@
                     <button class="cart-remove-btn" onclick="removeItem('${item.id}', '${item.size}', '${item.color}')">Remove</button>
                   </div>
                 </div>
-                <div class="cart-item-price">$${(item.price * item.qty).toFixed(2)}</div>
+                <div class="cart-item-price">${formatNaira(item.price * item.qty)}</div>
               </div>
             `).join('')}
           </div>
@@ -163,15 +167,15 @@
             <div class="summary-title">Order Summary</div>
             <div class="summary-row">
               <span>Subtotal</span>
-              <span>$${subtotal.toFixed(2)}</span>
+              <span>${formatNaira(subtotal)}</span>
             </div>
             <div class="summary-row">
-              <span>Shipping</span>
-              <span>${shipping === 0 ? '<strong style="color:#16A34A">FREE</strong>' : '$' + shipping.toFixed(2)}</span>
+              <span>Delivery Fee</span>
+              <span>${shipping === 0 ? '<strong style="color:#16A34A">FREE (Orders > ₦150k)</strong>' : formatNaira(shipping)}</span>
             </div>
             <div class="summary-total">
               <span>Total</span>
-              <span>$${(subtotal + shipping).toFixed(2)}</span>
+              <span>${formatNaira(subtotal + shipping)}</span>
             </div>
             <button class="btn-primary btn-checkout" onclick="checkout()">Proceed to Checkout 🔒</button>
           </div>

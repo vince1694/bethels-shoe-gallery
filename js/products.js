@@ -1,5 +1,5 @@
 /* ============================================================
-   BETHELS SHOE GALLERY — Products Data & Rendering
+   BETHELS SHOE GALLERY — Products Data & Rendering (Naira ₦)
    ============================================================ */
 
 const PRODUCTS = [
@@ -8,8 +8,8 @@ const PRODUCTS = [
     name: "Classic Low-Top Sneakers",
     brand: "Sneaker Company",
     category: "Men",
-    price: 125,
-    oldPrice: 250,
+    price: 75000,
+    oldPrice: 150000,
     discount: 50,
     rating: 4.8,
     reviews: 128,
@@ -31,8 +31,8 @@ const PRODUCTS = [
     name: "Oxford Cap-Toe Dress Shoes",
     brand: "Bethels Leather Craft",
     category: "Men",
-    price: 189,
-    oldPrice: 220,
+    price: 120000,
+    oldPrice: 140000,
     discount: 14,
     rating: 4.9,
     reviews: 84,
@@ -51,8 +51,8 @@ const PRODUCTS = [
     name: "Nude Suede Stiletto Heels",
     brand: "Bethels Couture",
     category: "Women",
-    price: 149,
-    oldPrice: 199,
+    price: 95000,
+    oldPrice: 125000,
     discount: 25,
     rating: 4.7,
     reviews: 203,
@@ -71,8 +71,8 @@ const PRODUCTS = [
     name: "Rugged Leather Hiking Boots",
     brand: "Outdoor Craft",
     category: "Men",
-    price: 215,
-    oldPrice: 280,
+    price: 135000,
+    oldPrice: 175000,
     discount: 23,
     rating: 4.6,
     reviews: 67,
@@ -91,8 +91,8 @@ const PRODUCTS = [
     name: "Chunky Platform Streetwear",
     brand: "Urban Runner",
     category: "Women",
-    price: 135,
-    oldPrice: 180,
+    price: 85000,
+    oldPrice: 115000,
     discount: 25,
     rating: 4.5,
     reviews: 312,
@@ -111,8 +111,8 @@ const PRODUCTS = [
     name: "Red Strappy Block Sandals",
     brand: "Summer Atelier",
     category: "Women",
-    price: 98,
-    oldPrice: 130,
+    price: 65000,
+    oldPrice: 85000,
     discount: 25,
     rating: 4.4,
     reviews: 156,
@@ -131,8 +131,8 @@ const PRODUCTS = [
     name: "Tan Suede Chelsea Boots",
     brand: "Bethels Gallery",
     category: "Men",
-    price: 178,
-    oldPrice: 230,
+    price: 110000,
+    oldPrice: 145000,
     discount: 23,
     rating: 4.8,
     reviews: 91,
@@ -151,8 +151,8 @@ const PRODUCTS = [
     name: "Sport Runner Pro",
     brand: "Bethels Gallery",
     category: "Men",
-    price: 115,
-    oldPrice: 155,
+    price: 70000,
+    oldPrice: 95000,
     discount: 26,
     rating: 4.6,
     reviews: 445,
@@ -167,6 +167,10 @@ const PRODUCTS = [
     desc: "Breathable performance running shoes built with shock-absorbing soles for long-distance training."
   }
 ];
+
+function formatNaira(amount) {
+  return "₦" + amount.toLocaleString("en-NG");
+}
 
 function getStars(rating) {
   const full = Math.floor(rating);
@@ -199,8 +203,8 @@ function renderCard(p) {
         <span class="card-rating-count">(${p.reviews})</span>
       </div>
       <div class="card-price-row">
-        <span class="card-price">$${p.price.toFixed(2)}</span>
-        ${p.oldPrice ? `<span class="card-price-old">$${p.oldPrice.toFixed(2)}</span>` : ""}
+        <span class="card-price">${formatNaira(p.price)}</span>
+        ${p.oldPrice ? `<span class="card-price-old">${formatNaira(p.oldPrice)}</span>` : ""}
         ${p.discount ? `<span class="badge-discount">${p.discount}%</span>` : ""}
       </div>
     </div>

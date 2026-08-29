@@ -30,10 +30,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (titleEl) titleEl.textContent = product.name;
   if (descEl) descEl.textContent = product.desc || `Experience unmatched style and comfort with our premium ${product.name}. Handcrafted with high-quality materials for everyday elegance.`;
 
-  if (priceEl) priceEl.textContent = `$${product.price.toFixed(2)}`;
+  function formatNaira(amount) {
+    return "₦" + Number(amount).toLocaleString("en-NG");
+  }
+
+  if (priceEl) priceEl.textContent = formatNaira(product.price);
   if (oldPriceEl) {
     if (product.oldPrice) {
-      oldPriceEl.textContent = `$${product.oldPrice.toFixed(2)}`;
+      oldPriceEl.textContent = formatNaira(product.oldPrice);
       oldPriceEl.style.display = "block";
     } else {
       oldPriceEl.style.display = "none";
