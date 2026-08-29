@@ -319,6 +319,17 @@
 .related-section .products-grid {
   grid-template-columns: repeat(4, 1fr);
 }
+
+/* Hide the dark "Quick Add" floating button in the related section —
+   it's not needed here (clicking the card navigates to the detail page)
+   and was causing the black card overlay issue on desktop */
+.related-section .card-quick-add {
+  display: none !important;
+}
+/* Also hide the wishlist ghost button to keep cards clean */
+.related-section .card-wishlist {
+  display: none;
+}
 @media (max-width: 1100px) {
   .related-section .products-grid { grid-template-columns: repeat(2, 1fr); }
 }
