@@ -1,5 +1,5 @@
 /* ============================================================
-   BETHELS SHOE GALLERY — Product Detail Dynamic Page Logic
+   BETHELS SHOE GALLERY — Product Detail Page Logic (Unified Gallery)
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const productId = parseInt(params.get("id")) || 1;
   const product = PRODUCTS.find(p => p.id === productId) || PRODUCTS[0];
 
-  // Gallery Images setup specifically for the clicked product
+  // Gallery Images setup for the selected product
   const galleryImages = (product.galleryImages && product.galleryImages.length > 0)
     ? product.galleryImages
     : [product.img || "assets/images/shoe1_1.jpg"];
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let selectedSize = product.sizes ? product.sizes[0] : 42;
   let selectedColor = product.colors ? product.colors[0] : "#F5F0E8";
 
-  // 1. Populate Product Text & Details
+  // 1. Populate Product Info Metadata
   const brandEl = document.getElementById("p-brand");
   const titleEl = document.getElementById("p-title");
   const descEl = document.getElementById("p-desc");
@@ -26,13 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const oldPriceEl = document.getElementById("p-old-price");
   const badgeEl = document.getElementById("p-badge");
 
-  if (brandEl) brandEl.textContent = (product.brand || "BETHELS GALLERY").toUpperCase();
-  if (titleEl) titleEl.textContent = product.name;
-  if (descEl) descEl.textContent = product.desc || `Experience unmatched style and comfort with our premium ${product.name}. Handcrafted with high-quality materials for everyday elegance.`;
-
   function formatNaira(amount) {
     return "₦" + Number(amount).toLocaleString("en-NG");
   }
+
+  if (brandEl) brandEl.textContent = (product.brand || "BETHELS GALLERY").toUpperCase();
+  if (titleEl) titleEl.textContent = product.name;
+  if (descEl) descEl.textContent = product.desc || `Experience unmatched style and comfort with our premium ${product.name}. Handcrafted with high-quality materials for everyday elegance.`;
 
   if (priceEl) priceEl.textContent = formatNaira(product.price);
   if (oldPriceEl) {
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Set page title & breadcrumb
+  // Page title & breadcrumb
   document.title = `${product.name} — Bethels Shoe Gallery`;
   const bcCurrent = document.getElementById("bc-current");
   if (bcCurrent) bcCurrent.textContent = product.name;
@@ -89,81 +89,75 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 4. Dynamically Render Gallery Elements for Desktop, Mobile & Lightbox
+  // 4. Render Gallery Elements (Unified Gallery & Lightbox)
   const mainImage = document.getElementById("main-image");
-  const desktopThumbsContainer = document.getElementById("desktop-thumbs");
-  const mobileTrackContainer = document.getElementById("mobile-gallery-track");
-  const mobileThumbsContainer = document.getElementById("mobile-thumbs-strip");
-  const lightboxThumbsContainer = document.querySelector(".lightbox-thumbs");
+  const galleryThumbsContainer = document.getElementById("gallery-thumbs");
+  const lbThumbsContainer = document.getElementById("lb-thumbs");
   const lbMainImg = document.getElementById("lb-main-image");
 
-  // Render Desktop Thumbnails
-  if (desktopThumbsContainer) {
-    desktopThumbsContainer.innerHTML = galleryImages.map((imgUrl, idx) => `
-      <button class="thumb-btn ${idx === 0 ? 'active' : ''}" data-index="${idx}">
-        <img src="${imgUrl}" alt="${product.name} View ${idx + 1}">
-      </button>
-    `).join('');
-  }
-
-  // Render Mobile Slider Track
-  if (mobileTrackContainer) {
-    mobileTrackContainer.innerHTML = galleryImages.map((imgUrl, idx) => `
-      <div class="mobile-gallery-slide"><img src="${imgUrl}" alt="${product.name} View ${idx + 1}"></div>
-    `).join('');
-  }
-
-  // Render Mobile Thumbnails Strip
-  if (mobileThumbsContainer) {
-    mobileThumbsContainer.innerHTML = galleryImages.map((imgUrl, idx) => `
-      <button class="mobile-thumb-item ${idx === 0 ? 'active' : ''}" data-index="${idx}">
-        <img src="${imgUrl}" alt="Thumb ${idx + 1}">
-      </button>
-    `).join('');
+  // Render Thumbnails (Only show thumbnail row if > 1 image, or 1 clean thumbnail)
+  if (galleryThumbsContainer) {
+    if (galleryImages.length > 1) {
+      galleryThumbsContainer.style.display = "flex";
+      galleryThumbsContainer.innerHTML = galleryImages.map((imgUrl, idx) => `
+        <button class="thumb-btn ${idx === 0 ? 'active' : ''}" data-index="${idx}">
+          <img src="${imgUrl}" alt="${product.name} Angle ${idx + 1}">
+        </button>
+      `).join('');
+    } else {
+      galleryThumbsContainer.style.display = "none";
+    }
   }
 
   // Render Lightbox Thumbnails
-  if (lightboxThumbsContainer) {
-    lightboxThumbsContainer.innerHTML = galleryImages.map((imgUrl, idx) => `
-      <button class="lb-thumb ${idx === 0 ? 'active' : ''}" data-index="${idx}">
-        <img src="${imgUrl}" alt="LB Thumb ${idx + 1}">
-      </button>
-    `).join('');
+  if (lbThumbsContainer) {
+    if (galleryImages.length > 1) {
+      lbThumbsContainer.style.display = "flex";
+      lbThumbsContainer.innerHTML = galleryImages.map((imgUrl, idx) => `
+        <button class="lb-thumb ${idx === 0 ? 'active' : ''}" data-index="${idx}">
+          <img src="${imgUrl}" alt="LB Angle ${idx + 1}">
+        </button>
+      `).join('');
+    } else {
+      lbThumbsContainer.style.display = "none";
+    }
   }
 
-  // 5. Update Gallery State Function
+  // Hide side arrows on main image if product has only 1 image
+  const galleryPrev = document.getElementById("gallery-prev");
+  const galleryNext = document.getElementById("gallery-next");
+  const lbPrev = document.getElementById("lb-prev");
+  const lbNext = document.getElementById("lb-next");
+
+  if (galleryImages.length <= 1) {
+    if (galleryPrev) galleryPrev.style.display = "none";
+    if (galleryNext) galleryNext.style.display = "none";
+    if (lbPrev) lbPrev.style.display = "none";
+    if (lbNext) lbNext.style.display = "none";
+  } else {
+    if (galleryPrev) galleryPrev.style.display = "flex";
+    if (galleryNext) galleryNext.style.display = "flex";
+    if (lbPrev) lbPrev.style.display = "flex";
+    if (lbNext) lbNext.style.display = "flex";
+  }
+
+  // 5. Update Active Gallery Image Function
   function updateGallery(index) {
     currentIndex = index;
     if (mainImage) mainImage.src = galleryImages[currentIndex];
     if (lbMainImg) lbMainImg.src = galleryImages[currentIndex];
 
-    // Update Desktop Thumbs
-    document.querySelectorAll("#desktop-thumbs .thumb-btn").forEach((thumb, idx) => {
+    document.querySelectorAll(".thumb-btn").forEach((thumb, idx) => {
       thumb.classList.toggle("active", idx === currentIndex);
     });
 
-    // Update Mobile Thumbs
-    document.querySelectorAll("#mobile-thumbs-strip .mobile-thumb-item").forEach((thumb, idx) => {
-      thumb.classList.toggle("active", idx === currentIndex);
-    });
-
-    // Update Lightbox Thumbs
     document.querySelectorAll(".lb-thumb").forEach((thumb, idx) => {
       thumb.classList.toggle("active", idx === currentIndex);
     });
-
-    // Update Mobile Track Transform
-    if (mobileTrackContainer) {
-      mobileTrackContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
   }
 
-  // Attach Event Listeners to newly rendered thumbs
-  document.querySelectorAll("#desktop-thumbs .thumb-btn").forEach((thumb, idx) => {
-    thumb.addEventListener("click", () => updateGallery(idx));
-  });
-
-  document.querySelectorAll("#mobile-thumbs-strip .mobile-thumb-item").forEach((thumb, idx) => {
+  // Thumbnail Click Handlers
+  document.querySelectorAll(".thumb-btn").forEach((thumb, idx) => {
     thumb.addEventListener("click", () => updateGallery(idx));
   });
 
@@ -171,18 +165,32 @@ document.addEventListener("DOMContentLoaded", () => {
     thumb.addEventListener("click", () => updateGallery(idx));
   });
 
-  // Init default gallery view
-  updateGallery(0);
+  // Main Gallery Navigation Arrows
+  if (galleryPrev) {
+    galleryPrev.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const prevIdx = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      updateGallery(prevIdx);
+    });
+  }
 
-  // 6. Lightbox Functionality
+  if (galleryNext) {
+    galleryNext.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const nextIdx = (currentIndex + 1) % galleryImages.length;
+      updateGallery(nextIdx);
+    });
+  }
+
+  // 6. Lightbox Controls
   const mainImageWrap = document.getElementById("main-image-wrap");
   const lightbox = document.getElementById("lightbox");
   const lbClose = document.getElementById("lb-close");
-  const lbPrev = document.getElementById("lb-prev");
-  const lbNext = document.getElementById("lb-next");
 
   if (mainImageWrap && lightbox) {
-    mainImageWrap.addEventListener("click", () => {
+    mainImageWrap.addEventListener("click", (e) => {
+      // Don't trigger lightbox if user clicked side arrows
+      if (e.target.closest(".gallery-arrow")) return;
       lightbox.classList.add("open");
       document.body.style.overflow = "hidden";
       updateGallery(currentIndex);
@@ -204,14 +212,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (lbPrev) {
-    lbPrev.addEventListener("click", () => {
-      const nextIdx = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-      updateGallery(nextIdx);
+    lbPrev.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const prevIdx = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      updateGallery(prevIdx);
     });
   }
 
   if (lbNext) {
-    lbNext.addEventListener("click", () => {
+    lbNext.addEventListener("click", (e) => {
+      e.stopPropagation();
       const nextIdx = (currentIndex + 1) % galleryImages.length;
       updateGallery(nextIdx);
     });
@@ -221,50 +231,29 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (e) => {
     if (!lightbox || !lightbox.classList.contains("open")) return;
     if (e.key === "Escape") closeLightbox();
-    if (e.key === "ArrowLeft") lbPrev ? lbPrev.click() : null;
-    if (e.key === "ArrowRight") lbNext ? lbNext.click() : null;
+    if (e.key === "ArrowLeft" && lbPrev) lbPrev.click();
+    if (e.key === "ArrowRight" && lbNext) lbNext.click();
   });
 
-  // 7. Mobile Gallery Arrow & Touch Swipe Navigation
-  const mobilePrev = document.getElementById("mobile-prev");
-  const mobileNext = document.getElementById("mobile-next");
-  const mobileTrackWrap = document.querySelector(".mobile-gallery-track-wrap");
-
-  if (mobilePrev) {
-    mobilePrev.addEventListener("click", () => {
-      const nextIdx = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-      updateGallery(nextIdx);
-    });
-  }
-
-  if (mobileNext) {
-    mobileNext.addEventListener("click", () => {
-      const nextIdx = (currentIndex + 1) % galleryImages.length;
-      updateGallery(nextIdx);
-    });
-  }
-
-  // Touch Swipe Gesture Handling
+  // 7. Touch Swipe Gesture Support for Mobile
   let touchStartX = 0;
   let touchEndX = 0;
 
-  if (mobileTrackWrap) {
-    mobileTrackWrap.addEventListener("touchstart", (e) => {
+  if (mainImageWrap && galleryImages.length > 1) {
+    mainImageWrap.addEventListener("touchstart", (e) => {
       touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
 
-    mobileTrackWrap.addEventListener("touchend", (e) => {
+    mainImageWrap.addEventListener("touchend", (e) => {
       touchEndX = e.changedTouches[0].screenX;
       const diff = touchEndX - touchStartX;
       if (Math.abs(diff) > 35) {
         if (diff < 0) {
-          // Swipe Left -> Next Image
-          const nextIdx = (currentIndex + 1) % galleryImages.length;
-          updateGallery(nextIdx);
+          // Swipe Left -> Next
+          updateGallery((currentIndex + 1) % galleryImages.length);
         } else {
-          // Swipe Right -> Previous Image
-          const prevIdx = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-          updateGallery(prevIdx);
+          // Swipe Right -> Prev
+          updateGallery((currentIndex - 1 + galleryImages.length) % galleryImages.length);
         }
       }
     }, { passive: true });
@@ -309,4 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }, currentQty);
     });
   }
+
+  // Init gallery view
+  updateGallery(0);
 });

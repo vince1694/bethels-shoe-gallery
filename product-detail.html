@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fall Limited Edition Sneakers — Bethels Shoe Gallery</title>
-  <meta name="description" content="These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.">
+  <title>Product Detail — Bethels Shoe Gallery</title>
+  <meta name="description" content="Discover premium handcrafted shoes at Bethels Shoe Gallery. Express your unique style.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/products.css">
   <link rel="stylesheet" href="css/product-detail.css">
@@ -60,61 +60,31 @@
 
   <!-- Main Product Detail Section -->
   <main class="container product-detail-section">
-    
-    <!-- MOBILE GALLERY CAROUSEL & THUMBNAILS (Mobile < 960px) -->
-    <div class="mobile-gallery">
-      <div class="mobile-gallery-container">
-        <div class="mobile-gallery-track-wrap">
-          <button class="mobile-gallery-arrow prev" id="mobile-prev" aria-label="Previous Image">
-            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
-          <div class="mobile-gallery-track" id="mobile-gallery-track">
-            <div class="mobile-gallery-slide"><img src="assets/images/shoe1_1.jpg" alt="Sneaker View 1 - Side Profile"></div>
-            <div class="mobile-gallery-slide"><img src="assets/images/shoe1_2.jpg" alt="Sneaker View 2 - Side Angle"></div>
-            <div class="mobile-gallery-slide"><img src="assets/images/shoe1_3.jpg" alt="Sneaker View 3 - Heel Detail"></div>
-            <div class="mobile-gallery-slide"><img src="assets/images/shoe1_4.jpg" alt="Sneaker View 4 - Sole Base"></div>
-          </div>
-          <button class="mobile-gallery-arrow next" id="mobile-next" aria-label="Next Image">
-            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
-        </div>
-        
-        <!-- Mobile Thumbnails Strip -->
-        <div class="mobile-thumbs-strip" id="mobile-thumbs-strip">
-          <button class="mobile-thumb-item active" data-index="0"><img src="assets/images/shoe1_1.jpg" alt="Thumb 1"></button>
-          <button class="mobile-thumb-item" data-index="1"><img src="assets/images/shoe1_2.jpg" alt="Thumb 2"></button>
-          <button class="mobile-thumb-item" data-index="2"><img src="assets/images/shoe1_3.jpg" alt="Thumb 3"></button>
-          <button class="mobile-thumb-item" data-index="3"><img src="assets/images/shoe1_4.jpg" alt="Thumb 4"></button>
-        </div>
-      </div>
-    </div>
-
     <div class="product-detail-grid">
       
-      <!-- DESKTOP GALLERY (Left Column) -->
+      <!-- UNIFIED GALLERY (Left Column on Desktop, Top Section on Mobile — 100% Reliable, Never Blank!) -->
       <div class="gallery-col">
         <div class="gallery-main" id="main-image-wrap">
-          <img src="assets/images/shoe1_1.jpg" id="main-image" alt="Fall Limited Edition Sneakers">
+          <button class="gallery-arrow prev" id="gallery-prev" aria-label="Previous Image">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          
+          <img src="assets/images/shoe1_1.jpg" id="main-image" alt="Product Main Image">
+          
+          <button class="gallery-arrow next" id="gallery-next" aria-label="Next Image">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          
           <div class="gallery-zoom-hint">🔍 Click for Lightbox View</div>
         </div>
         
-        <div class="gallery-thumbs" id="desktop-thumbs">
-          <button class="thumb-btn active" data-index="0">
-            <img src="assets/images/shoe1_1.jpg" alt="Sneaker View 1">
-          </button>
-          <button class="thumb-btn" data-index="1">
-            <img src="assets/images/shoe1_2.jpg" alt="Sneaker View 2">
-          </button>
-          <button class="thumb-btn" data-index="2">
-            <img src="assets/images/shoe1_3.jpg" alt="Sneaker View 3">
-          </button>
-          <button class="thumb-btn" data-index="3">
-            <img src="assets/images/shoe1_4.jpg" alt="Sneaker View 4">
-          </button>
+        <!-- Gallery Thumbnails -->
+        <div class="gallery-thumbs" id="gallery-thumbs">
+          <!-- Populated dynamically by js/product-detail.js -->
         </div>
       </div>
 
-      <!-- PRODUCT INFO PANEL (Right Column) -->
+      <!-- PRODUCT INFO PANEL (Right Column on Desktop, Bottom Section on Mobile) -->
       <div class="info-col">
         <div class="info-brand" id="p-brand">SNEAKER COMPANY</div>
         <h1 class="info-title" id="p-title">Fall Limited Edition Sneakers</h1>
@@ -123,7 +93,7 @@
           These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.
         </p>
 
-        <!-- Price block matching reference layout -->
+        <!-- Price block -->
         <div class="info-price-row">
           <span class="info-price" id="p-price">₦75,000</span>
           <span class="badge-discount" id="p-badge">50%</span>
@@ -166,7 +136,7 @@
         <div class="info-trust">
           <div class="trust-item">
             <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-            <span>Free Express Shipping</span>
+            <span>Free Nationwide Delivery (Orders > ₦150k)</span>
           </div>
           <div class="trust-item">
             <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -200,11 +170,8 @@
         </button>
       </div>
 
-      <div class="lightbox-thumbs">
-        <button class="lb-thumb active" data-index="0"><img src="assets/images/shoe1_1.jpg" alt="LB Thumb 1"></button>
-        <button class="lb-thumb" data-index="1"><img src="assets/images/shoe1_2.jpg" alt="LB Thumb 2"></button>
-        <button class="lb-thumb" data-index="2"><img src="assets/images/shoe1_3.jpg" alt="LB Thumb 3"></button>
-        <button class="lb-thumb" data-index="3"><img src="assets/images/shoe1_4.jpg" alt="LB Thumb 4"></button>
+      <div class="lightbox-thumbs" id="lb-thumbs">
+        <!-- Populated dynamically -->
       </div>
     </div>
   </div>
