@@ -193,7 +193,6 @@ function renderCard(p) {
       <button class="card-wishlist" aria-label="Add to wishlist" onclick="toggleWishlist(event, this)">
         <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       </button>
-      <button class="card-quick-add" onclick="quickAdd(event, ${p.id})">+ QUICK ADD</button>
     </div>
     <div class="card-body">
       <div class="card-category">${p.category}</div>
@@ -249,11 +248,13 @@ function renderGrid(filter = "All", options = {}) {
   if (countEl) countEl.textContent = `${filtered.length} products`;
 }
 
-// Filter buttons (products page only)
+// Auto-render grid based on page context
 document.addEventListener("DOMContentLoaded", () => {
-  // Only auto-render on the products listing page (filter buttons exist)
   const filterButtons = document.querySelectorAll(".filter-btn");
+  const grid = document.getElementById("products-grid");
+
   if (filterButtons.length > 0) {
+    // Products listing page — full grid with filter controls
     renderGrid();
     filterButtons.forEach(btn => {
       btn.addEventListener("click", () => {
@@ -262,5 +263,9 @@ document.addEventListener("DOMContentLoaded", () => {
         renderGrid(btn.dataset.filter);
       });
     });
+  } else if (grid && !document.querySelector(".product-detail-section")) {
+    // Index / homepage — show first 4 featured products, no filters
+    renderGrid("All", { limit: 4 });
   }
+  // On product-detail page, product-detail.js calls renderGrid() itself
 });
