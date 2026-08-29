@@ -227,24 +227,40 @@ function quickAdd(e, id) {
 }
 
 // Render grid
-function renderGrid(filter = "All") {
+// options: { filter, excludeId, limit }
+function renderGrid(filter = "All", options = {}) {
   const grid = document.getElementById("products-grid");
   const countEl = document.getElementById("results-count");
   if (!grid) return;
 
-  const filtered = filter === "All" ? PRODUCTS : PRODUCTS.filter(p => p.category === filter);
+  let filtered = filter === "All" ? PRODUCTS : PRODUCTS.filter(p => p.category === filter);
+
+  // Exclude a specific product (used on detail page to hide current product)
+  if (options.excludeId !== undefined) {
+    filtered = filtered.filter(p => p.id !== options.excludeId);
+  }
+
+  // Limit number of results (used on detail page for related products)
+  if (options.limit !== undefined) {
+    filtered = filtered.slice(0, options.limit);
+  }
+
   grid.innerHTML = filtered.map(renderCard).join("");
   if (countEl) countEl.textContent = `${filtered.length} products`;
 }
 
-// Filter buttons
+// Filter buttons (products page only)
 document.addEventListener("DOMContentLoaded", () => {
-  renderGrid();
-  document.querySelectorAll(".filter-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      renderGrid(btn.dataset.filter);
+  // Only auto-render on the products listing page (filter buttons exist)
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  if (filterButtons.length > 0) {
+    renderGrid();
+    filterButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderGrid(btn.dataset.filter);
+      });
     });
-  });
+  }
 });

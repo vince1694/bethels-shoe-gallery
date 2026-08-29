@@ -301,4 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Init gallery view
   updateGallery(0);
+
+  // Render "You Might Also Like" related products (exclude current, max 4)
+  renderGrid("All", { excludeId: product.id, limit: 4 });
 });
