@@ -3,18 +3,25 @@
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Get product ID from URL query param, default to 1 (Fall Limited Edition Sneakers / Classic Low-Top)
+  // Get product ID from URL query param, default to 1 (Fall Limited Edition Sneakers)
   const params = new URLSearchParams(window.location.search);
   const productId = parseInt(params.get("id")) || 1;
   const product = PRODUCTS.find(p => p.id === productId) || PRODUCTS[0];
 
-  // Gallery Images setup for product detail
-  const galleryImages = [
-    product.img || "assets/images/shoe1_1.jpg",
-    "assets/images/shoe2_1.jpg",
-    "assets/images/shoe3_1.jpg",
-    "assets/images/shoe4_1.jpg"
-  ];
+  // Gallery Images setup for product detail (4 distinct angles of the sneaker)
+  const galleryImages = productId === 1
+    ? [
+        "assets/images/shoe1_1.jpg",
+        "assets/images/shoe1_2.jpg",
+        "assets/images/shoe1_3.jpg",
+        "assets/images/shoe1_4.jpg"
+      ]
+    : [
+        product.img || "assets/images/shoe1_1.jpg",
+        "assets/images/shoe1_2.jpg",
+        "assets/images/shoe1_3.jpg",
+        "assets/images/shoe1_4.jpg"
+      ];
 
   let currentIndex = 0;
   let currentQty = 1;
